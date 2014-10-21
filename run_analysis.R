@@ -21,7 +21,7 @@ select_var <- function(df) {
         if (grepl('std', df[i,2])) {
             cols <- c(cols, i+2)
             vars <- c(vars, as.character(df[i,2]))
-  #      }
+        }
   #      if (grepl('Std', df[i,2])) {
   #          cols <- c(cols, i+2)
   #          vars <- c(vars, as.character(df[i,2]))
@@ -55,7 +55,7 @@ variables_rn <- function(names){
     out <- gsub('-mean\\(\\)(-)?','Mean',out)
     out <- gsub('-meanFreq\\(\\)(-)?','MeanFreq',out)
     out <- gsub('-std\\(\\)(-)?','Std',out)
-    out <- gsub('BodyBody','Body',out)  # remove the artefact in the some names
+    out <- gsub('BodyBody','Body',out)  # remove the artefact in some names
     return(out)
 }
 
@@ -92,8 +92,7 @@ all_features <- read.table('UCI\ HAR\ Dataset/features.txt')
 activity_labs <- read.table('UCI\ HAR\ Dataset/activity_labels.txt')
 
 # Merging test and train data to the combined dataset and selecton of
-# variables in the combined dataset that contains 'mean/Mean'
-# and 'std/Std' substrings.
+# variables in the combined dataset that contains 'mean/std' substrings.
 
 all <- rbind(test, train)
 variables <- select_var(all_features)
